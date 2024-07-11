@@ -6,67 +6,67 @@ const {} = Astro.props;
 
 <article
   x-data="
-  { autoplayIntervalTime: 4000,
-  slides: [
-        {
-            imgSrc: '1.avif',
-            imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.',  
-            title: 'Studio Fotograficzne',
-            description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',           
-        },                
-        {                    
-            imgSrc: '2.avif',                    
-            imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.',  
-            title: 'Profesjonalni Fotografowie',
-            description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.',            
-        },                
-        {                    
-            imgSrc: '3.avif',                    
-            imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.',    
-            title: 'Sesje Zdjęciowe',
-            description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.',       
-        },            
-        {                    
-            imgSrc: '4.avif',                    
-            imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.',    
-            title: 'Wynajem Studia',
-            description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.',       
-        },            
+  {
+    autoplayIntervalTime: 4000,
+    slides: [
+      {
+        imgSrc: '1.avif',
+        imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.',
+        title: 'Studio Fotograficzne',
+        description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',
+      },
+      {
+        imgSrc: '2.avif',
+        imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.',
+        title: 'Profesjonalni Fotografowie',
+        description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.',
+      },
+      {
+        imgSrc: '3.avif',
+        imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.',
+        title: 'Sesje Zdjęciowe',
+        description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.',
+      },
+      {
+        imgSrc: '4.avif',
+        imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.',
+        title: 'Wynajem Studia',
+        description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.',
+      },
     ],
-              
-        currentSlideIndex: 1,
-        isPaused: false,
-        autoplayInterval: null,
-        previous() {                
-            if (this.currentSlideIndex > 1) {                    
-                this.currentSlideIndex = this.currentSlideIndex - 1                
-            } else {   
-                // If it's the first slide, go to the last slide           
-                this.currentSlideIndex = this.slides.length                
-            }            
-        },            
-        next() {                
-            if (this.currentSlideIndex < this.slides.length) {                    
-                this.currentSlideIndex = this.currentSlideIndex + 1                
-            } else {                 
-                // If it's the last slide, go to the first slide    
-                this.currentSlideIndex = 1                
-            }            
-        },    
-        autoplay() {
-            this.autoplayInterval = setInterval(() => {
-                if (! this.isPaused) {
-                    this.next()
-                }
-            }, this.autoplayIntervalTime)
-        },
-        // Updates interval time   
-        setAutoplayInterval(newIntervalTime) {
-            clearInterval(this.autoplayInterval)
-            this.autoplayIntervalTime = newIntervalTime
-            this.autoplay()
-        },    
-    }"
+    currentSlideIndex: 1,
+    isPaused: false,
+    autoplayInterval: null,
+    previous() {
+      if (this.currentSlideIndex > 1) {
+        this.currentSlideIndex -= 1;
+      } else {
+        // If it's the first slide, go to the last slide
+        this.currentSlideIndex = this.slides.length;
+      }
+    },
+    next() {
+      if (this.currentSlideIndex < this.slides.length) {
+        this.currentSlideIndex += 1;
+      } else {
+        // If it's the last slide, go to the first slide
+        this.currentSlideIndex = 1;
+      }
+    },
+    autoplay() {
+      this.autoplayInterval = setInterval(() => {
+        if (!this.isPaused) {
+          this.next();
+        }
+      }, this.autoplayIntervalTime);
+    },
+    // Updates interval time
+    setAutoplayInterval(newIntervalTime) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayIntervalTime = newIntervalTime;
+      this.autoplay();
+    },
+  }"
   x-init="autoplay"
   class="relative z-10 w-full"
 >
@@ -113,23 +113,24 @@ const {} = Astro.props;
     class="absolute inset-0 bottom-5 z-20 rounded-full text-slate-900 opacity-50 transition hover:opacity-95 focus-visible:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:outline-offset-0"
     aria-label="pause carousel"
     x-on:click="(isPaused = !isPaused), setAutoplayInterval(autoplayIntervalTime)"
-    x-bind:aria-pressed="isPaused"
+    x-bind:aria-pressed="isPaused"></button>
+
+  <!-- indicators -->
+  <div
+    class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 rounded-xl px-2 py-1"
+    role="group"
+    aria-label="slides"
   >
-    <!-- indicators -->
-    <div
-      class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 rounded-xl px-2 py-1"
-      role="group"
-      aria-label="slides"
-    >
-      <template x-for="(slide, index) in slides">
-        <button
-          class="size-6 cursor-pointer rounded-full transition md:size-8"
-          x-on:click="(currentSlideIndex = index + 1), setAutoplayInterval(autoplayIntervalTime)"
-          x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-400' : 'bg-neutral-400/50']"
-          x-bind:aria-label="'slide ' + (index + 1)"></button>
-      </template>
-    </div>
-  </button>
+    <template x-for="(slide, index) in slides">
+      <button
+        class="size-6 cursor-pointer rounded-full transition md:size-8"
+        x-on:click="(currentSlideIndex = index + 1), setAutoplayInterval(autoplayIntervalTime)"
+        x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-400' : 'bg-neutral-400/50']"
+        x-bind:aria-label="'slide ' + (index + 1)"></button>
+    </template>
+  </div>
 </article>
 
-<style></style>
+<style>
+  /* Dodaj tutaj swoje style CSS */
+</style>
