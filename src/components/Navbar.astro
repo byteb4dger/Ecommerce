@@ -1,0 +1,141 @@
+---
+
+---
+
+<header
+  x-data="{
+    slideOverOpen: false
+    }"
+  class="border-b-1 sticky top-0 z-50 border border-b-black bg-neutral-50"
+>
+  <!-- Desktop Menu -->
+  <section
+    class="my-auto hidden h-full w-full items-center justify-center px-1 py-5 md:flex md:items-baseline md:justify-around"
+  >
+    <h3
+      class="animate-fade cursor-none text-4xl font-extralight tracking-wide animate-delay-500 animate-once"
+    >
+      Fifth Avenue Studio
+    </h3>
+
+    <div class="hidden gap-8 tracking-wide md:flex md:gap-10">
+      <a
+        href="#"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >Home</a
+      >
+      <a
+        href="#my"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >My</a
+      >
+      <a
+        href="#studio"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >Studio</a
+      >
+      <a
+        href="#crew"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >Zespół</a
+      >
+      <a
+        href="#features"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >Usługi</a
+      >
+      <a
+        href="#testimonials"
+        class="animate-fade font-extralight animate-delay-500 animate-once md:text-xl 2xl:text-2xl"
+        >Opinie</a
+      >
+    </div>
+  </section>
+
+  <!-- Mobile Button -->
+  <section
+    class="fixed bottom-10 right-10 z-[100] rounded-full bg-neutral-950 p-2 md:hidden"
+  >
+    <a
+      @click.outside="slideOverOpen=!slideOverOpen"
+      @click="slideOverOpen=!slideOverOpen"
+      class="flex h-12 w-12 cursor-pointer items-center justify-center"
+    >
+      <img
+        x-show="!slideOverOpen"
+        x-cloak
+        class="size-8 select-none"
+        src="https://img.icons8.com/small/64/ffffff/menu.png"
+      />
+      <img
+        x-show="slideOverOpen"
+        x-cloak
+        class="size-8 select-none"
+        src="https://img.icons8.com/small/64/ffffff/delete-sign.png"
+      />
+    </a>
+  </section>
+
+  <!-- Mobile Menu -->
+  <template x-teleport="body">
+    <div
+      x-show="slideOverOpen"
+      @keydown.window.escape="slideOverOpen=false"
+      class="relative z-10"
+    >
+      <div
+        x-show="slideOverOpen"
+        x-transition.opacity.duration.600ms
+        @click="slideOverOpen = false"
+        class="fixed inset-0 bg-black bg-opacity-10"
+      >
+      </div>
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div
+              x-show="slideOverOpen"
+              @click.away="slideOverOpen = false"
+              x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:enter-start="translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="translate-x-full"
+              class="w-screen max-w-full"
+            >
+              <div class="flex h-full flex-col overflow-y-scroll bg-neutral-50">
+                <div class="relative flex-1">
+                  <div class="absolute inset-0">
+                    <div class="relative h-full overflow-hidden">
+                      <div
+                        class="flex h-full flex-col items-center justify-center gap-10"
+                      >
+                        <a href="#" class="text-xl font-extralight">Home</a>
+                        <a href="#my" class="text-xl font-extralight">My</a>
+                        <a href="#studio" class="text-xl font-extralight"
+                          >Studio</a
+                        >
+                        <a href="#crew" class="text-xl font-extralight"
+                          >Zespół</a
+                        >
+                        <a href="#features" class="text-xl font-extralight"
+                          >Usługi</a
+                        >
+                        <a href="#testimonials" class="text-xl font-extralight"
+                          >Opinie</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</header>
+
+<style></style>

@@ -1,0 +1,148 @@
+---
+import "@fontsource-variable/roboto-mono";
+import "@fontsource/merriweather";
+import "@fontsource-variable/plus-jakarta-sans";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /><meta
+      name="generator"
+      content={Astro.generator}
+    /><script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh9szYYktVq6roGPDIzPDH4SfOsoaWSUU&loading=async&libraries=maps,marker&v=beta"
+      defer></script><title>{title}</title></head
+  >
+
+  <body class="bg-neutral-50 text-neutral-950">
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+
+  <style is:global>
+    [x-cloak] {
+      display: none !important;
+    }
+
+    html {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    a {
+      font-family: "Plus Jakarta Sans Variable", sans-serif;
+    }
+
+    body {
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    }
+
+    a {
+      transition: font-weight 300ms ease;
+    }
+
+    a:hover {
+      font-weight: bold;
+    }
+
+    :root {
+      /**/
+      /*other default setting ...*/
+      /**/
+      --secondary-glow: conic-gradient(
+        from 10deg at 50% 50%,
+        #eb7494 0deg,
+        #ae77b2 55deg,
+        #97b5da 120deg,
+        #0099ca 160deg,
+        transparent 360deg
+      );
+
+      --third-glow: conic-gradient(
+        from 90deg at 50% 50%,
+        #ff8b7e 0deg,
+        #e24e6b 160deg,
+        #7ed2da 120deg,
+        #8bdce0 55deg,
+        transparent 360deg
+      );
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    body::before {
+      background: var(--third-glow);
+      border-radius: 50%;
+      width: 50vw;
+      height: 50vw;
+      margin-left: -200px;
+      filter: blur(90px);
+      top: calc(50vh - 50vw / 2);
+      left: calc(50vw);
+      animation: animateBefore 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+    }
+
+    body::after {
+      background: var(--secondary-glow);
+      border-radius: 50%;
+      width: 500px;
+      height: 700px;
+      filter: blur(90px);
+      top: calc(50vh - 50vw / 2);
+      left: calc(50vw - 50vw / 2);
+      animation: animateAfter 7s cubic-bezier(0.47, 0, 0.745, 0.715) infinite;
+    }
+
+    @keyframes animateBefore {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(200px) scale(0.8);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes animateAfter {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-250px) scale(1.2);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</html>

@@ -1,0 +1,135 @@
+---
+type Props = {};
+
+const {} = Astro.props;
+---
+
+<article
+  x-data="
+  { autoplayIntervalTime: 4000,
+  slides: [
+        {
+            imgSrc: '1.avif',
+            imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.',  
+            title: 'Studio Fotograficzne',
+            description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',           
+        },                
+        {                    
+            imgSrc: '2.avif',                    
+            imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.',  
+            title: 'Profesjonalni Fotografowie',
+            description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.',            
+        },                
+        {                    
+            imgSrc: '3.avif',                    
+            imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.',    
+            title: 'Sesje Zdjęciowe',
+            description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.',       
+        },            
+        {                    
+            imgSrc: '4.avif',                    
+            imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.',    
+            title: 'Wynajem Studia',
+            description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.',       
+        },            
+    ],
+              
+        currentSlideIndex: 1,
+        isPaused: false,
+        autoplayInterval: null,
+        previous() {                
+            if (this.currentSlideIndex > 1) {                    
+                this.currentSlideIndex = this.currentSlideIndex - 1                
+            } else {   
+                // If it's the first slide, go to the last slide           
+                this.currentSlideIndex = this.slides.length                
+            }            
+        },            
+        next() {                
+            if (this.currentSlideIndex < this.slides.length) {                    
+                this.currentSlideIndex = this.currentSlideIndex + 1                
+            } else {                 
+                // If it's the last slide, go to the first slide    
+                this.currentSlideIndex = 1                
+            }            
+        },    
+        autoplay() {
+            this.autoplayInterval = setInterval(() => {
+                if (! this.isPaused) {
+                    this.next()
+                }
+            }, this.autoplayIntervalTime)
+        },
+        // Updates interval time   
+        setAutoplayInterval(newIntervalTime) {
+            clearInterval(this.autoplayInterval)
+            this.autoplayIntervalTime = newIntervalTime
+            this.autoplay()
+        },    
+    }"
+  x-init="autoplay"
+  class="relative z-10 w-full"
+>
+  <!-- slides -->
+  <!-- Change min-h-[50svh] to your preferred height size -->
+  <article class="relative h-dvh">
+    <template x-for="(slide, index) in slides">
+      <div
+        x-cloak
+        x-show="currentSlideIndex == index + 1"
+        class="absolute inset-0"
+        x-transition.opacity.duration.1000ms
+      >
+        <!-- Title and description -->
+        <div
+          class="absolute bottom-48 z-10 flex h-auto w-auto flex-col items-center justify-center gap-6 rounded-sm bg-neutral-950 px-4 py-8 text-center opacity-90 md:left-[100px] md:right-[100px] lg:px-20 lg:py-14 xl:left-[250px] xl:right-[250px] 2xl:left-[320px] 2xl:right-[320px]"
+        >
+          <h2
+            class="w-full text-balance text-3xl tracking-wide text-white md:text-5xl 2xl:text-6xl"
+            x-text="slide.title"
+            x-bind:aria-describedby="'slide' + (index + 1) + 'Description'"
+          >
+          </h2>
+          <p
+            class="w-full text-pretty text-lg font-thin tracking-wider text-slate-300 md:text-xl 2xl:text-2xl"
+            x-text="slide.description"
+            x-bind:id="'slide' + (index + 1) + 'Description'"
+          >
+          </p>
+        </div>
+
+        <img
+          class="absolute inset-0 h-full w-full object-cover text-slate-700"
+          x-bind:src="slide.imgSrc"
+          x-bind:alt="slide.imgAlt"
+        />
+      </div>
+    </template>
+  </article>
+
+  <!-- Pause/Play Button -->
+  <button
+    type="button"
+    class="absolute inset-0 bottom-5 z-20 rounded-full text-slate-900 opacity-50 transition hover:opacity-95 focus-visible:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:outline-offset-0"
+    aria-label="pause carousel"
+    x-on:click="(isPaused = !isPaused), setAutoplayInterval(autoplayIntervalTime)"
+    x-bind:aria-pressed="isPaused"
+  >
+    <!-- indicators -->
+    <div
+      class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 rounded-xl px-2 py-1"
+      role="group"
+      aria-label="slides"
+    >
+      <template x-for="(slide, index) in slides">
+        <button
+          class="size-6 cursor-pointer rounded-full transition md:size-8"
+          x-on:click="(currentSlideIndex = index + 1), setAutoplayInterval(autoplayIntervalTime)"
+          x-bind:class="[currentSlideIndex === index + 1 ? 'bg-neutral-400' : 'bg-neutral-400/50']"
+          x-bind:aria-label="'slide ' + (index + 1)"></button>
+      </template>
+    </div>
+  </button>
+</article>
+
+<style></style>
