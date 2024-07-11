@@ -4,68 +4,10 @@ type Props = {};
 const {} = Astro.props;
 ---
 
-<Fragment
+<article
   x-init="autoplay"
   class="relative z-10 w-full"
-  x-data="
-        {
-        autoplayIntervalTime: 4000,
-        slides: [
-          {
-            imgSrc: '1.avif',
-            imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.',
-            title: 'Studio Fotograficzne',
-            description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',
-          },
-          {
-            imgSrc: '2.avif',
-            imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.',
-            title: 'Profesjonalni Fotografowie',
-            description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.',
-          },
-          {
-            imgSrc: '3.avif',
-            imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.',
-            title: 'Sesje Zdjęciowe',
-            description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.',
-          },
-          {
-            imgSrc: '4.avif',
-            imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.',
-            title: 'Wynajem Studia',
-            description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.',
-          },
-        ],
-        currentSlideIndex: 1,
-        isPaused: false,
-        autoplayInterval: null,
-        previous() {
-          if (this.currentSlideIndex > 1) {
-            this.currentSlideIndex -= 1;
-          } else {
-            this.currentSlideIndex = this.slides.length;
-          }
-        },
-        next() {
-          if (this.currentSlideIndex < this.slides.length) {
-            this.currentSlideIndex += 1;
-          } else {
-            this.currentSlideIndex = 1;
-          }
-        },
-        autoplay() {
-          this.autoplayInterval = setInterval(() => {
-            if (!this.isPaused) {
-              this.next();
-            }
-          }, this.autoplayIntervalTime);
-        },
-        setAutoplayInterval(newIntervalTime) {
-          clearInterval(this.autoplayInterval);
-          this.autoplayIntervalTime = newIntervalTime;
-          this.autoplay();
-        },
-      }"
+  x-data="{autoplayIntervalTime: 4000, slides: [{imgSrc: '1.avif', imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.', title: 'Studio Fotograficzne', description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',}, {imgSrc: '2.avif', imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.', title: 'Profesjonalni Fotografowie', description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.', }, {imgSrc: '3.avif', imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.', title: 'Sesje Zdjęciowe', description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.', }, {imgSrc: '4.avif', imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.', title: 'Wynajem Studia', description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.', }], currentSlideIndex: 1, isPaused: false, autoplayInterval: null, previous() {if (this.currentSlideIndex > 1) { this.currentSlideIndex -= 1;} else {this.currentSlideIndex = this.slides.length;}},next() {if (this.currentSlideIndex < this.slides.length) {this.currentSlideIndex += 1;} else {this.currentSlideIndex = 1;}},autoplay() {this.autoplayInterval = setInterval(() => {if (!this.isPaused) { this.next();}}, this.autoplayIntervalTime);},setAutoplayInterval(newIntervalTime) {clearInterval(this.autoplayInterval);this.autoplayIntervalTime = newIntervalTime;this.autoplay();},}"
 >
   <!-- slides -->
   <!-- Change min-h-[50svh] to your preferred height size -->
@@ -126,7 +68,7 @@ const {} = Astro.props;
         x-bind:aria-label="'slide ' + (index + 1)"></button>
     </template>
   </div>
-</Fragment>
+</article>
 
 <style>
   /* Dodaj tutaj swoje style CSS */
