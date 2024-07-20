@@ -1,5 +1,9 @@
+---
+
+---
+
 <header
-  class="border-b-1 bg-neutral-75 sticky top-0 z-50 border border-b-black bg-opacity-50 backdrop-blur-lg"
+  class="border-b-1 sticky top-0 z-50 border border-b-black bg-neutral-50"
   x-data="{ slideOverOpen: false }"
 >
   <!-- Desktop Menu -->
@@ -51,20 +55,20 @@
     class="fixed bottom-10 right-10 z-[100] rounded-full bg-neutral-950 p-2 md:hidden"
   >
     <a
-      @click.away="slideOverOpen=false"
+      @click.outside="slideOverOpen=false"
       @click="slideOverOpen=!slideOverOpen"
-      class="flex h-12 w-12 cursor-pointer items-center justify-center"
+      class="flex size-14 cursor-pointer items-center justify-center"
     >
       <img
         x-show="!slideOverOpen"
         x-cloak
-        class="h-8 w-8 select-none"
+        class="size-10 select-none"
         src="https://img.icons8.com/small/64/ffffff/menu.png"
       />
       <img
         x-show="slideOverOpen"
         x-cloak
-        class="h-8 w-8 select-none"
+        class="size-10 select-none"
         src="https://img.icons8.com/small/64/ffffff/delete-sign.png"
       />
     </a>
@@ -105,18 +109,18 @@
                       <div
                         class="flex h-full flex-col items-center justify-center gap-10"
                       >
-                        <a href="#" class="text-xl font-extralight">Home</a>
-                        <a href="#my" class="text-xl font-extralight">My</a>
-                        <a href="#studio" class="text-xl font-extralight"
+                        <a href="#" class="text-2xl font-extralight">Home</a>
+                        <a href="#my" class="text-2xl font-extralight">My</a>
+                        <a href="#studio" class="text-2xl font-extralight"
                           >Studio</a
                         >
-                        <a href="#crew" class="text-xl font-extralight"
+                        <a href="#crew" class="text-2xl font-extralight"
                           >Zespół</a
                         >
-                        <a href="#features" class="text-xl font-extralight"
+                        <a href="#features" class="text-2xl font-extralight"
                           >Usługi</a
                         >
-                        <a href="#testimonials" class="text-xl font-extralight"
+                        <a href="#testimonials" class="text-2xl font-extralight"
                           >Opinie</a
                         >
                       </div>
@@ -131,3 +135,5 @@
     </div>
   </template>
 </header>
+
+<style></style>

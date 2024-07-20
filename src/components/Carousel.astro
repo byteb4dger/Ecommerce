@@ -4,9 +4,9 @@ type Props = {};
 const {} = Astro.props;
 ---
 
-<article
+<section
   x-init="autoplay"
-  class="relative z-10 w-full"
+  class="relative w-full"
   x-data=`{autoplayIntervalTime: 4000, slides: [{imgSrc: '1.avif', imgAlt: 'Profesjonalne studio fotograficzne z nowoczesnym oświetleniem i tłem.', title: 'Studio Fotograficzne', description: 'Oferujemy kompleksowe usługi fotograficzne dla każdej okazji. W naszym studiu zrealizujesz swoje najśmielsze wizje.',}, {imgSrc: '2.avif', imgAlt: 'Zespół fotografów pracujących nad sesją zdjęciową w nowoczesnym studiu.', title: 'Profesjonalni Fotografowie', description: 'Nasz zespół doświadczonych fotografów zapewni Ci najwyższą jakość zdjęć i niezapomniane wrażenia z sesji.', }, {imgSrc: '3.avif', imgAlt: 'Modelka pozująca przed aparatem w profesjonalnym studiu fotograficznym.', title: 'Sesje Zdjęciowe', description: 'Specjalizujemy się w sesjach portretowych, modowych, produktowych i wielu innych. Uwiecznimy najpiękniejsze chwile Twojego życia.', }, {imgSrc: '4.avif', imgAlt: 'Elegancko urządzone wnętrze studia fotograficznego z rekwizytami do sesji.', title: 'Wynajem Studia', description: 'Nasze studio jest dostępne do wynajęcia dla fotografów oraz firm potrzebujących profesjonalnej przestrzeni do sesji zdjęciowych.', }], currentSlideIndex: 1, isPaused: false, autoplayInterval: null, previous() {if (this.currentSlideIndex > 1) { this.currentSlideIndex -= 1;} else {this.currentSlideIndex = this.slides.length;}},next() {if (this.currentSlideIndex < this.slides.length) {this.currentSlideIndex += 1;} else {this.currentSlideIndex = 1;}},autoplay() {this.autoplayInterval = setInterval(() => {if (!this.isPaused) { this.next();}}, this.autoplayIntervalTime);},setAutoplayInterval(newIntervalTime) {clearInterval(this.autoplayInterval);this.autoplayIntervalTime = newIntervalTime;this.autoplay();},}`
 >
   <!-- slides -->
@@ -46,14 +46,6 @@ const {} = Astro.props;
     </template>
   </section>
 
-  <!-- Pause/Play Button -->
-  <button
-    type="button"
-    class="absolute inset-0 bottom-5 z-20 rounded-full text-slate-900 opacity-50 transition hover:opacity-95 focus-visible:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:outline-offset-0"
-    aria-label="pause carousel"
-    x-on:click="(isPaused = !isPaused), setAutoplayInterval(autoplayIntervalTime)"
-    x-bind:aria-pressed="isPaused"></button>
-
   <!-- indicators -->
   <div
     class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 gap-3 rounded-xl px-2 py-1"
@@ -68,7 +60,7 @@ const {} = Astro.props;
         x-bind:aria-label="'slide ' + (index + 1)"></button>
     </template>
   </div>
-</article>
+</section>
 
 <style>
   /* Dodaj tutaj swoje style CSS */
