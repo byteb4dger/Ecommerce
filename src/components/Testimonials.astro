@@ -1,18 +1,29 @@
 <section
+  x-data="{ shown: false }"
+  x-intersect="shown = true"
   id="testimonials"
   class="mx-auto flex h-dvh max-w-xs flex-col items-center justify-center overflow-x-hidden md:max-w-xl lg:max-w-3xl 2xl:max-w-6xl"
 >
-  <div>
+  <div
+    x-show="shown"
+    x-transition:enter="transition ease-out duration-1000"
+    x-transition:enter-start="opacity-0 scale-50"
+    x-transition:enter-end="opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 scale-100"
+    x-transition:leave-end="opacity-0 scale-90"
+    class="flex flex-col"
+  >
     <div class="mx-auto flex flex-col items-start lg:items-center">
       <p
-        class="relative flex w-full items-start justify-start text-sm font-bold uppercase tracking-wider text-purple-500 lg:items-center lg:justify-center lg:text-lg"
+        class="relative flex w-full items-start justify-start text-sm font-bold uppercase tracking-wider text-purple-500 lg:items-center lg:justify-center lg:text-lg 2xl:text-2xl"
         data-primary="purple-500"
       >
         Nie musisz nam wierzyć na słowo
       </p>
 
       <h2
-        class="relative flex w-full max-w-3xl items-start justify-start text-3xl font-bold lg:justify-center lg:text-5xl"
+        class="relative flex w-full max-w-3xl items-start justify-start text-3xl font-bold lg:justify-center lg:text-5xl 2xl:text-7xl"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +64,7 @@
               <p class="text-gray-600">CEO of Something</p>
             </div>
           </div>
-          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg">
+          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg 2xl:text-xl">
             "This is a no-brainer if you want to take your business to the next
             level. If you are looking for the ultimate toolset, this is it!"
           </blockquote>
@@ -75,7 +86,7 @@
               <p class="text-gray-600">CTO of Business</p>
             </div>
           </div>
-          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg">
+          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg 2xl:text-xl">
             "Thanks for creating this service. My life is so much easier. Thanks
             for making such a great product."
           </blockquote>
@@ -97,7 +108,7 @@
               <p class="text-gray-600">Creator of Stuff</p>
             </div>
           </div>
-          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg">
+          <blockquote class="text-md mt-8 text-gray-500 lg:text-lg 2xl:text-xl">
             "Packed with awesome content and exactly what I was looking for. I
             would highly recommend this to anyone."
           </blockquote>
